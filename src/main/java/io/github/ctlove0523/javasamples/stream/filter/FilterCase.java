@@ -1,10 +1,16 @@
 package io.github.ctlove0523.javasamples.stream.filter;
 
+import com.google.common.collect.Collections2;
+import io.vavr.collection.Stream;
+import org.apache.commons.collections4.CollectionUtils;
+import org.eclipse.collections.impl.factory.Lists;
+import org.eclipse.collections.impl.utility.Iterate;
 import org.junit.Test;
 
 import java.util.Arrays;
+import java.util.Collection;
+import java.util.LinkedList;
 import java.util.List;
-import java.util.function.Consumer;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
