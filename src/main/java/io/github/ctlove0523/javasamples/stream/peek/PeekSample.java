@@ -15,6 +15,15 @@ import java.util.stream.Stream;
 public class PeekSample {
 
     @Test
+    public void test_printInfoButNot() {
+        Person a = new Person("a", 18);
+        Person b = new Person("b", 23);
+        Person c = new Person("c", 34);
+        Stream<Person> persons = Stream.of(a, b, c);
+        persons.peek(System.out::println);
+    }
+
+    @Test
     public void test_printInfo() {
         Person a = new Person("a", 18);
         Person b = new Person("b", 23);
