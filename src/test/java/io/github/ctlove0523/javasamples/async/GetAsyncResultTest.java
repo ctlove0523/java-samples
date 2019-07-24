@@ -1,5 +1,6 @@
 package io.github.ctlove0523.javasamples.async;
 
+import junit.framework.TestCase;
 import okhttp3.mockwebserver.MockResponse;
 import okhttp3.mockwebserver.MockWebServer;
 import org.junit.BeforeClass;
@@ -14,7 +15,7 @@ import java.net.InetAddress;
  * @author: chentong
  * Date:     2019/7/22 22:58
  */
-public class GetAsyncResultTest {
+public class GetAsyncResultTest extends TestCase {
 
 
     @Test
