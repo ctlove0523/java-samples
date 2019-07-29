@@ -6,7 +6,10 @@ import org.junit.Test;
 
 import java.util.function.Function;
 
-public class FunctionExample {
+/**
+ * @author chentong
+ */
+public class FunctionTest {
 
     @Test
     public void test_function_success() {

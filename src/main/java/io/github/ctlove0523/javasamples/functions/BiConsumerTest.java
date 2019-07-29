@@ -4,7 +4,10 @@ import org.junit.Test;
 
 import java.util.function.BiConsumer;
 
-public class BiConsumerExample {
+/**
+ * @author chentong
+ */
+public class BiConsumerTest {
     /**
      * the output will be:
      * 3

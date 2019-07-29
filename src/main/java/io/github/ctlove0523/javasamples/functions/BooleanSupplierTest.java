@@ -5,7 +5,10 @@ import org.junit.Test;
 import java.util.Random;
 import java.util.function.BooleanSupplier;
 
-public class BooleanSupplierExample {
+/**
+ * @author chentong
+ */
+public class BooleanSupplierTest {
     private static final Random RANDOM = new Random();
 
     /**

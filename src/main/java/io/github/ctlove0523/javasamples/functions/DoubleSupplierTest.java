@@ -5,7 +5,10 @@ import org.junit.Test;
 import java.util.Random;
 import java.util.function.DoubleSupplier;
 
-public class DoubleSupplierExample {
+/**
+ * @author chentong
+ */
+public class DoubleSupplierTest {
     private static final Random RANDOM = new Random();
 
     /**

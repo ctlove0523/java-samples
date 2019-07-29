@@ -4,7 +4,10 @@ import org.junit.Test;
 
 import java.util.function.Consumer;
 
-public class ConsumerExample {
+/**
+ * @author chentong
+ */
+public class ConsumerTest {
     /**
      * the output will be:
      * Hello Consumer
