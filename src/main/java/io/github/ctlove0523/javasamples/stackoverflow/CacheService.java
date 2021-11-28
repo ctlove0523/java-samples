@@ -13,9 +13,6 @@ import java.util.Arrays;
  */
 public class CacheService {
 
-    public static void main(String[] args) throws Exception {
-    }
-
     public static void compareArrays(int[] arr1, int[] arr2) {
         Streams.zip(Arrays.stream(arr1).boxed(), Arrays.stream(arr2).boxed()
                 , (integer, integer2) -> integer - integer2 == 0 ? "=" : integer - integer2 > 0 ? "+" : "-")
