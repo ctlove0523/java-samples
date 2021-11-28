@@ -2,34 +2,21 @@ package io.github.ctlove0523.javasamples.token;
 
 import java.util.UUID;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 public class TokenClientTest {
 
 	@Test
 	public void test() {
-		IdentityProvider identityProvider = new IdentityProvider() {
-			@Override
-			public Identity getIdentity() {
-				return new Identity() {
-					@Override
-					public String getId() {
-						return "1";
-					}
-				};
-			}
+		IdentityVerifier identityVerifier = identity -> true;
 
-			@Override
-			public boolean validIdentity(Identity identity) {
-				return true;
-			}
-		};
-
+		String key = UUID.randomUUID().toString();
 		SignKeyPairProvider signKeyPairProvider = new SignKeyPairProvider() {
 			@Override
 			public SignKeyPair getSignKeyPair() {
 				SignKeyPair signKeyPair = new SignKeyPair();
-				signKeyPair.setCurrentKey(UUID.randomUUID().toString());
+				signKeyPair.setCurrentKey(key);
 				return signKeyPair;
 			}
 
@@ -39,9 +26,12 @@ public class TokenClientTest {
 			}
 		};
 
-		TokenClient tokenClient = new JwtTokenClient(signKeyPairProvider, identityProvider);
+		TokenClient tokenClient = new JwtTokenClient(signKeyPairProvider, identityVerifier);
 
-		String token = tokenClient.getToken();
-		System.out.println(token);
+		Identity identity = () -> "123";
+		String token = tokenClient.getToken(identity);
+		Assert.assertNotNull(token);
+
+		Assert.assertTrue(tokenClient.validToken(token));
 	}
 }

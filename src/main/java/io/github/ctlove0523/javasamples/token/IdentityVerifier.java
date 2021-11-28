@@ -1,8 +1,6 @@
 package io.github.ctlove0523.javasamples.token;
 
-public interface IdentityProvider {
-
-	Identity getIdentity();
+public interface IdentityVerifier {
 
 	boolean validIdentity(Identity identity);
 }

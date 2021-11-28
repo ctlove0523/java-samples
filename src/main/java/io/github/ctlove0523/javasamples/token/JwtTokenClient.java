@@ -11,7 +11,7 @@ import io.jsonwebtoken.SignatureAlgorithm;
 
 public class JwtTokenClient implements TokenClient {
 	private SignKeyPairProvider keyPairProvider;
-	private IdentityProvider identityProvider;
+	private IdentityVerifier identityVerifier;
 
 	private Cache<String, String> tokenCache = Caffeine.newBuilder()
 			.build();
@@ -19,14 +19,13 @@ public class JwtTokenClient implements TokenClient {
 	private Cache<String, Boolean> tokenHistory = Caffeine.newBuilder()
 			.build();
 
-	JwtTokenClient(SignKeyPairProvider keyPairProvider, IdentityProvider identityProvider) {
+	JwtTokenClient(SignKeyPairProvider keyPairProvider, IdentityVerifier identityVerifier) {
 		this.keyPairProvider = keyPairProvider;
-		this.identityProvider = identityProvider;
+		this.identityVerifier = identityVerifier;
 	}
 
 	@Override
-	public String getToken() {
-		Identity identity = identityProvider.getIdentity();
+	public String getToken(Identity identity) {
 		if (Objects.isNull(identity)) {
 			return "";
 		}
@@ -69,13 +68,13 @@ public class JwtTokenClient implements TokenClient {
 		}
 
 		String payload = Jwts.parser().setSigningKey(signKeyPair.getCurrentKey())
-				.parseClaimsJws(token).getSignature();
+				.parseClaimsJws(token).getBody().toString();
 		if (Strings.isNullOrEmpty(payload)) {
 			return false;
 		}
 
 		Identity identity = JacksonUtil.json2Object(payload, Identity.class);
-		if (identityProvider.validIdentity(identity)) {
+		if (identityVerifier.validIdentity(identity)) {
 			tokenHistory.put(token, true);
 			return true;
 		}
