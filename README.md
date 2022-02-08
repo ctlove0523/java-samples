@@ -11,3 +11,5 @@ Samples for Java code
 * logcaptor
 
   使用开源组件LogCaptor对日志进行单元测试
+* hkdf
+  HKDF算法的完备实现  
